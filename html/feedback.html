@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedback page</title>
+    <link rel="stylesheet" href="../css&js/style.css">
+    <style>
+        body{
+            
+        }
+        .feedback-wrap {
+            max-width: 700px;
+            margin: 24px auto
+        }
+
+        textarea {
+            margin: 8px;
+            width: 100%;
+            min-height: 160px;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #1c1a1a;
+            font-size: 15px
+        }
+
+        .actions {
+            margin-top: 12px;
+            text-align: right
+        }
+
+        button {
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: none;
+            background: #6d57e9;
+            color: #fff;
+            font-weight: 600
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>MAGNUM</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="#">Feedback</a>
+        </nav>
+    </header>
+    <main class="feedback-wrap">
+        <h2>Feedback</h2>
+        <form id="feedbackForm">
+            <label for="feedbackText"></label>
+            <textarea id="feedbackText" placeholder="Write Here......!"></textarea>
+            <div class="actions">
+                <button id="fbSubmit" type="submit" disabled>Submit</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const fbForm = document.getElementById('feedbackForm');
+        const fbText = document.getElementById('feedbackText');
+        const fbBtn = document.getElementById('fbSubmit');
+
+        function updateFbButton() {
+            fbBtn.disabled = fbText.value.trim() === '';
+        }
+
+        fbText.addEventListener('input', updateFbButton);
+
+        fbForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(fbText.value.trim() === '') return; // safety
+            alert('Thank You for the Feedback');
+            fbText.value = '';
+            updateFbButton();
+        });
+
+        // init
+        updateFbButton();
+    </script>
+</body>
+
+</html>
